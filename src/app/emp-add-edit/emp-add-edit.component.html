@@ -1,0 +1,38 @@
+<div mat-dialog-title>
+    <h1>Sweet Data</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" placeholder="Product Name" formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput type="number" placeholder="Enter Price" formControlName="Price">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Company Name</mat-label>
+                <input matInput type="text" placeholder="Company Name" formControlName="CompanyName">
+            </mat-form-field>
+        </div>
+ 
+ 
+        <div class="row">
+             <mat-form-field appearance="outline">
+                <mat-label>Manufacture Date</mat-label>
+                <input matInput placeholder="DD-MM-YYYY" formControlName="ManfactureDate">
+                
+            </mat-form-field>
+        </div>
+     </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false" color="warn">Cancel</button>
+
+         <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+    </div>
+</form>

@@ -1,0 +1,66 @@
+<mat-toolbar color="primary">
+  <span>Jojo jalebi Sweets</span>
+  <span class="example-spacer"></span>
+  <button class="green-button" mat-raised-button (click)="openAddEditEmpForm()"  style="background-color: green; color: white;">
+    ADD Sweets
+  </button >
+</mat-toolbar>
+
+
+
+<div class="main-body">
+
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+  </mat-form-field>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+        <td mat-cell *matCellDef="let row"> {{row.Price  | currency:'INR'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="CompanyName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.CompanyName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ManfactureDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Manfacture Date</th>
+        <td mat-cell *matCellDef="let row"> {{row.ManfactureDate}}</td>
+      </ng-container>
+ 
+       
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" (click)="openEditForm(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteSweet(row._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+       <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+     
+  </div>
+</div>
